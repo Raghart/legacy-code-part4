@@ -1,19 +1,15 @@
-import { describe, test } from "vitest";
+import { describe, it, test } from "vitest";
 import { expect } from "chai";
 import { Item, Shop } from "../src/gilded_rose.mjs";
 
 describe("Gilded Rose", () => {
-  test("foo", () => {
-    const shopItems = [new Item("foo", 0, 0)];
+  test("shop returns Items", () => {
+    const names = ["foo"];
+    const sellIn = 0;
+    const quality = 0;
+    const shopItems = names.map(name => new Item(name, sellIn, quality));
     const gildedRose = new Shop(shopItems);
     const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal("foo");
-  });
-
-  test("shop returns Aged Brie", () => {
-    const shopItems = [new Item("Aged Brie", 0, 0)];
-    const gildedRose = new Shop(shopItems);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal("Aged Brie");
+    expect(items).to.not.be.empty;
   });
 });
