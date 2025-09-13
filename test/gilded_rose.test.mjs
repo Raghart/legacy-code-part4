@@ -9,4 +9,11 @@ describe("Gilded Rose", () => {
     const items = gildedRose.updateQuality();
     expect(items[0].name).to.equal("foo");
   });
+
+  test("shop returns Aged Brie", () => {
+    const shopItems = [new Item("Aged Brie", 0, 0)];
+    const gildedRose = new Shop(shopItems);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).to.equal("Aged Brie");
+  });
 });
