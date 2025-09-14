@@ -12,4 +12,13 @@ describe("Gilded Rose", () => {
     const items = gildedRose.updateQuality();
     expect(items).to.not.be.empty;
   });
+
+  test("shop modify the quality of the book", () => {
+    const item = [new Item("foo",0,0)];
+    const gildedRose = new Shop(item);
+    const newItems = gildedRose.updateQuality();
+    expect(newItems[0].name).to.equal("foo");
+    expect(newItems[0].sellIn).to.equal(-1);
+    expect(newItems[0].quality).to.equal(0);
+  });
 });
