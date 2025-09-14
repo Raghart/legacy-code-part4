@@ -37,9 +37,9 @@ export class Shop {
     }
   }
   
-  chocolateCream(i) {
-    if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+  chocolateCream(item) {
+    if (item.name != "Sulfuras, Hand of Ragnaros") {
+        item.sellIn = item.sellIn - 1;
       }
   }
 
@@ -66,7 +66,7 @@ export class Shop {
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       this.chocolateSauce(this.items[i]);
-      this.chocolateCream(i);
+      this.chocolateCream(this.items[i]);
       this.chocolatePatatas(i);
     }
 
