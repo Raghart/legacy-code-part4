@@ -9,7 +9,6 @@ export class Item {
 export class Shop {
   constructor(items = []) {
     this.items = items;
-    this.item = null;
   }
 
   updateQuality() {
