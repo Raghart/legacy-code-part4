@@ -39,6 +39,18 @@ describe("Gilded Rose", () => {
     expect(items[0].quality).to.equal(4);
   });
 
+  test("shop return expected possible paths for Backstage passes to a TAFKAL80ETC concert", () => {
+    const items = [
+      { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0, quality: 0 },
+    ]
+    const itemsToShop = items.map(item => new Item(item.name, item.sellIn, item.quality));
+    const gildedRose = new Shop(itemsToShop);
+    const qualityCheck = gildedRose.updateQuality();
+    expect(qualityCheck).not.be.null.and.not.be.empty;
+    expect(qualityCheck.map(item => item.sellIn)).to.deep.equal([-1]);
+    expect(qualityCheck.map(item => item.quality)).to.deep.equal([0]);
+  });
+
   test("shop returns Backstage passes to a TAFKAL80ETC concert", () => {
     const name = "Backstage passes to a TAFKAL80ETC concert";
     const sellIn = 0;
@@ -49,18 +61,6 @@ describe("Gilded Rose", () => {
     expect(items[0].name).to.equal.name;
     expect(items[0].sellIn).to.equal(-1);
     expect(items[0].quality).to.equal(0);
-  });
-
-  test("shop returns Aged Brie with big quality", () => {
-    const name = "Aged Brie";
-    const sellIn = 0;
-    const quality = 50;
-    const gildedRose = new Shop([ new Item(name,sellIn,quality) ]);
-    const items = gildedRose.updateQuality();
-    expect(items).not.be.null.and.not.be.empty;
-    expect(items[0].name).to.equal.name;
-    expect(items[0].sellIn).to.equal(-1);
-    expect(items[0].quality).to.equal(50);
   });
 
   test("shop returns Backstage passes to a TAFKAL80ETC concert", () => {
@@ -85,5 +85,17 @@ describe("Gilded Rose", () => {
     expect(items[0].name).to.equal.name;
     expect(items[0].sellIn).to.equal(4);
     expect(items[0].quality).to.equal(43);
+  });
+
+  test("shop returns Aged Brie with big quality", () => {
+    const name = "Aged Brie";
+    const sellIn = 0;
+    const quality = 50;
+    const gildedRose = new Shop([ new Item(name,sellIn,quality) ]);
+    const items = gildedRose.updateQuality();
+    expect(items).not.be.null.and.not.be.empty;
+    expect(items[0].name).to.equal.name;
+    expect(items[0].sellIn).to.equal(-1);
+    expect(items[0].quality).to.equal(50);
   });
 });
