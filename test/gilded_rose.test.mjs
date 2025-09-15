@@ -4,15 +4,15 @@ import { Item, Shop } from "../src/gilded_rose.mjs";
 
 describe("Gilded Rose", () => {
   test("shop returns a list of items with expected results", () => {
-    const name = "foo";
-    const sellIn = 0;
-    const quality = 0;
-    const gildedRose = new Shop([new Item(name, sellIn, quality)]);
-    const items = gildedRose.updateQuality();
-    expect(items).not.be.null.and.not.be.empty;
-    expect(items[0].name).to.equal(name);
-    expect(items[0].sellIn).to.equal(-1);
-    expect(items[0].quality).to.equal(quality);
+    const itemsTotest = [
+      { name: "foo", sellIn: 0, quality: 0 },
+    ];
+    const itemsToShop = itemsTotest.map(item => new Item(item.name, item.quality, item.sellIn));
+    const gildedRose2 = new Shop(itemsToShop);
+    const expectedItems = gildedRose2.updateQuality();
+    expect(expectedItems).to.not.be.null.and.not.be.empty;
+    expect(expectedItems.map(item => item.sellIn)).to.deep.equal([-1]);
+    expect(expectedItems.map(item => item.quality)).to.deep.equal([0]);
   });
 
   test("shop return expected possible paths for Sulfuras, Hand of Ragnaros", () => {
@@ -20,8 +20,8 @@ describe("Gilded Rose", () => {
       { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 0 },
     ];
     const itemsToShop = itemsToTest.map(item => new Item(item.name, item.sellIn, item.quality));
-    const gildedRose2 = new Shop(itemsToShop);
-    const itemsToCheck = gildedRose2.updateQuality();
+    const gildedRose = new Shop(itemsToShop);
+    const itemsToCheck = gildedRose.updateQuality();
     expect(itemsToCheck).not.be.null.and.not.be.empty;
     expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([0]);
     expect(itemsToCheck.map(item => item.quality)).to.deep.equal([0]);
