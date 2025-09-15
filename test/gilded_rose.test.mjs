@@ -49,13 +49,14 @@ describe("Gilded Rose", () => {
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 0 },
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 40 },
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 6, quality: 30 },
+      { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 11, quality: 30 },
     ]
     const itemsToShop = items.map(item => new Item(item.name, item.sellIn, item.quality));
     const gildedRose = new Shop(itemsToShop);
     const qualityCheck = gildedRose.updateQuality();
     expect(qualityCheck).not.be.null.and.not.be.empty;
-    expect(qualityCheck.map(item => item.sellIn)).to.deep.equal([-1, 14, 4, 5]);
-    expect(qualityCheck.map(item => item.quality)).to.deep.equal([0, 1, 43, 32]);
+    expect(qualityCheck.map(item => item.sellIn)).to.deep.equal([-1, 14, 4, 5, 10]);
+    expect(qualityCheck.map(item => item.quality)).to.deep.equal([0, 1, 43, 32, 31]);
   });
 
   test("shop returns empty array when no items where put in the shop class", () => {
