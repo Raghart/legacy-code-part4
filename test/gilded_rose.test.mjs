@@ -8,8 +8,8 @@ describe("Gilded Rose", () => {
       { name: "foo", sellIn: 0, quality: 0 },
     ];
     const itemsToShop = itemsTotest.map(item => new Item(item.name, item.quality, item.sellIn));
-    const gildedRose2 = new Shop(itemsToShop);
-    const expectedItems = gildedRose2.updateQuality();
+    const gildedRose = new Shop(itemsToShop);
+    const expectedItems = gildedRose.updateQuality();
     expect(expectedItems).to.not.be.null.and.not.be.empty;
     expect(expectedItems.map(item => item.sellIn)).to.deep.equal([-1]);
     expect(expectedItems.map(item => item.quality)).to.deep.equal([0]);
@@ -50,7 +50,13 @@ describe("Gilded Rose", () => {
     const gildedRose = new Shop(itemsToShop);
     const qualityCheck = gildedRose.updateQuality();
     expect(qualityCheck).not.be.null.and.not.be.empty;
-    expect(qualityCheck.map(item => item.sellIn)).to.deep.equal([-1, 14, 4,]);
+    expect(qualityCheck.map(item => item.sellIn)).to.deep.equal([-1, 14, 4]);
     expect(qualityCheck.map(item => item.quality)).to.deep.equal([0, 1, 43]);
+  });
+
+  test("shop returns empty array when no items where put in the shop class", () => {
+    const gildedRose = new Shop();
+    const items = gildedRose.updateQuality();
+    expect(items).to.be.empty;
   });
 });
