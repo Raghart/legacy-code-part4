@@ -19,13 +19,14 @@ describe("Gilded Rose", () => {
     const itemsToTest = [
       { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 0 },
       { name: "Sulfuras, Hand of Ragnaros", sellIn: 5, quality: 10 },
+      { name: "Sulfuras, Hand of Ragnaros", sellIn: -5, quality: -5 },
     ];
     const itemsToShop = itemsToTest.map(item => new Item(item.name, item.sellIn, item.quality));
     const gildedRose = new Shop(itemsToShop);
     const itemsToCheck = gildedRose.updateQuality();
     expect(itemsToCheck).not.be.null.and.not.be.empty;
-    expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([0,5]);
-    expect(itemsToCheck.map(item => item.quality)).to.deep.equal([0, 10]);
+    expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([0,5,-5]);
+    expect(itemsToCheck.map(item => item.quality)).to.deep.equal([0, 10,-5]);
   });
 
   test("shop return expected possible paths for Aged Brie", () => {
