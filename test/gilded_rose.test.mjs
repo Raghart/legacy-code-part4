@@ -1,4 +1,4 @@
-import { describe, it, test } from "vitest";
+import { describe, test } from "vitest";
 import { expect } from "chai";
 import { Item, Shop } from "../src/gilded_rose.mjs";
 
@@ -16,15 +16,15 @@ describe("Gilded Rose", () => {
   });
 
   test("shop returns Item Sulfuras, Hand of Ragnaros", () => {
-    const name = "Sulfuras, Hand of Ragnaros";
-    const sellIn = 0;
-    const quality = 0;
-    const gildedRose = new Shop([new Item(name,sellIn,quality)]);
-    const items = gildedRose.updateQuality();
-    expect(items).not.be.null.and.not.be.empty;
-    expect(items[0].name).to.equal.name;
-    expect(items[0].sellIn).to.equal(0);
-    expect(items[0].quality).to.equal(quality);
+    const itemsToTest = [
+      { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 0 },
+    ];
+    const itemsToShop = itemsToTest.map(item => new Item(item.name, item.sellIn, item.quality));
+    const gildedRose2 = new Shop(itemsToShop);
+    const itemsToCheck = gildedRose2.updateQuality();
+    expect(itemsToCheck).not.be.null.and.not.be.empty;
+    expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([0]);
+    expect(itemsToCheck.map(item => item.quality)).to.deep.equal([0]);
   });
 
   test("shop return expected possible paths for Aged Brie", () => {
@@ -33,8 +33,8 @@ describe("Gilded Rose", () => {
       { name: "Aged Brie", sellIn: 0, quality: 50 },
     ];
     const itemsToShop = itemsToTest.map(item => new Item(item.name, item.sellIn, item.quality));
-    const gildedRose2 = new Shop(itemsToShop);
-    const itemsToCheck = gildedRose2.updateQuality();
+    const gildedRose = new Shop(itemsToShop);
+    const itemsToCheck = gildedRose.updateQuality();
     expect(itemsToCheck).not.be.null.and.not.be.empty;
     expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([-1, -1]);
     expect(itemsToCheck.map(item => item.quality)).to.deep.equal([4, 50]);
