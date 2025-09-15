@@ -15,7 +15,7 @@ describe("Gilded Rose", () => {
     expect(items[0].quality).to.equal(quality);
   });
 
-  test("shop returns Item Sulfuras, Hand of Ragnaros", () => {
+  test("shop return expected possible paths for Sulfuras, Hand of Ragnaros", () => {
     const itemsToTest = [
       { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 0 },
     ];
