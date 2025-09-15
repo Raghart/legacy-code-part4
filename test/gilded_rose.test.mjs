@@ -14,4 +14,16 @@ describe("Gilded Rose", () => {
     expect(items[0].sellIn).to.equal(-1);
     expect(items[0].quality).to.equal(quality);
   });
+
+  test("shop returns Item Sulfuras, Hand of Ragnaros", () => {
+    const name = "Sulfuras, Hand of Ragnaros";
+    const sellIn = 0;
+    const quality = 0;
+    const gildedRose = new Shop([new Item(name,sellIn,quality)]);
+    const items = gildedRose.updateQuality();
+    expect(items).not.be.null.and.not.be.empty;
+    expect(items[0].name).to.equal.name;
+    expect(items[0].sellIn).to.equal(0);
+    expect(items[0].quality).to.equal(quality);
+  });
 });
