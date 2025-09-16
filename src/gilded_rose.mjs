@@ -12,10 +12,7 @@ export class Shop {
   };
 
   updateQuality() {
-    for (let i=0; i < this.items.length; i++) {
-      this.updateItem(this.items[i]);
-    }
-    console.log(this.items);
+    for (let i=0; i < this.items.length; i++) { this.updateItem(this.items[i]); }
     return this.items;
   }
 
@@ -23,7 +20,7 @@ export class Shop {
     switch(item.name) {
       case("Aged Brie"): {
         --item.sellIn;
-        item.quality = item.quality + 2 >= 50 ? item.quality : item.quality + 2;
+        item.quality = Math.min(item.quality + 2, 50);
         return item;  
       }
       case("Backstage passes to a TAFKAL80ETC concert") : {
