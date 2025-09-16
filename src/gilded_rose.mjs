@@ -5,7 +5,7 @@ export class Item {
     this.quality = quality;
   }
 }
-
+/*
 export class testShop {
   constructor(items = []) {
     this.items = items;
@@ -26,10 +26,14 @@ export class testShop {
         item.quality = item.quality + 2 >= 50 ? item.quality : item.quality + 2;
         return item;  
       }
+      default: {
+        --item.sellIn
+        console.log(item.quality)
+      }
     }
   }
 }
-
+*/
 export class Shop {
   constructor(items = []) {
     this.items = items;
