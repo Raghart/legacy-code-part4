@@ -51,10 +51,8 @@ describe("Gilded Rose", () => {
     const items = [
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 0, quality: 0 },
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 15, quality: 0 },
-
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 40 },
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 6, quality: 30 },
-
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 11, quality: 30 },
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 49 },
     ]
@@ -64,6 +62,19 @@ describe("Gilded Rose", () => {
     expect(qualityCheck).not.be.null.and.not.be.empty;
     expect(qualityCheck.map(item => item.sellIn)).to.deep.equal([-1, 14, 4, 5, 10, 4]);
     expect(qualityCheck.map(item => item.quality)).to.deep.equal([0, 1, 43, 32, 31, 50]);
+  });
+
+  test("shop return expected possible paths for Conjure", () => {
+    const items = [
+      { name: "Conjured", sellIn: 5, quality: 10 },
+      { name: "Conjured", sellIn: -1, quality: 20 },
+    ];
+
+    const itemsToCheck = items.map(item => new Item(item.name, item.sellIn, item.quality));
+    const gildedRose = new Shop(itemsToCheck);
+    const updatedItems = gildedRose.updateQuality();
+    expect(updatedItems.map(item => item.sellIn)).to.deep.equal([4, -2]);
+    expect(updatedItems.map(item => item.quality)).to.deep.equal([8, 16]);
   });
 
   test("shop returns empty array when no items where put in the shop class", () => {
