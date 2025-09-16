@@ -38,7 +38,7 @@ describe("Gilded Rose", () => {
       { name: "Aged Brie", sellIn: 0, quality: 50 },
     ];
     const itemsToShop = itemsToTest.map(item => new Item(item.name, item.sellIn, item.quality));
-    const gildedRose = new Shop(itemsToShop);
+    const gildedRose = new testShop(itemsToShop);
     const itemsToCheck = gildedRose.updateQuality();
     expect(itemsToCheck).not.be.null.and.not.be.empty;
     expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([-1, -1]);

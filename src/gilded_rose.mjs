@@ -12,6 +12,12 @@ export class testShop {
   };
 
   updateQuality() {
+    for (let i=0; i < this.items.length; i++) {
+      this.items[i].sellIn = --this.items[i].sellIn;
+      if (this.items[i].quality < 50) { this.items[i].quality = this.items[i].quality + 2 }
+      
+    }
+    console.log(this.items)
     return this.items;
   }
 }
