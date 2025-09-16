@@ -9,13 +9,14 @@ describe("Gilded Rose", () => {
       { name: "chocolate cake", sellIn: 5, quality: -5 },
       { name: "french pasta", sellIn: 2, quality: 1 },
       { name: "pasta bolognesa", sellIn: 0, quality: 2 },
+      { name: "baguette", sellIn: 1, quality: 2 },
     ];
     const itemsToShop = itemsTotest.map(item => new Item(item.name, item.sellIn, item.quality));
     const gildedRose = new Shop(itemsToShop);
     const expectedItems = gildedRose.updateQuality();
     expect(expectedItems).to.not.be.null.and.not.be.empty;
-    expect(expectedItems.map(item => item.sellIn)).to.deep.equal([-1, 4, 1, -1]);
-    expect(expectedItems.map(item => item.quality)).to.deep.equal([0, -5, 0, 0]);
+    expect(expectedItems.map(item => item.sellIn)).to.deep.equal([-1, 4, 1, -1, 0]);
+    expect(expectedItems.map(item => item.quality)).to.deep.equal([0, -5, 0, 0, 1]);
   });
 
   test("shop return expected possible paths for Sulfuras, Hand of Ragnaros", () => {
