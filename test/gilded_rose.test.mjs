@@ -1,6 +1,6 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
-import { Item, Shop, testShop } from "../src/gilded_rose.mjs";
+import { Item, Shop } from "../src/gilded_rose.mjs";
 
 describe("Gilded Rose", () => {
   test("shop returns a list of items with expected results", () => {
@@ -12,7 +12,7 @@ describe("Gilded Rose", () => {
       { name: "baguette", sellIn: 1, quality: 2 },
     ];
     const itemsToShop = itemsTotest.map(item => new Item(item.name, item.sellIn, item.quality));
-    const gildedRose = new testShop(itemsToShop);
+    const gildedRose = new Shop(itemsToShop);
     const expectedItems = gildedRose.updateQuality();
     expect(expectedItems).to.not.be.null.and.not.be.empty;
     expect(expectedItems.map(item => item.sellIn)).to.deep.equal([-1, 4, 1, -1, 0]);
@@ -27,7 +27,7 @@ describe("Gilded Rose", () => {
       { name: "Sulfuras, Hand of Ragnaros", sellIn: -1, quality: 2 },
     ];
     const itemsToShop = itemsToTest.map(item => new Item(item.name, item.sellIn, item.quality));
-    const gildedRose = new testShop(itemsToShop);
+    const gildedRose = new Shop(itemsToShop);
     const itemsToCheck = gildedRose.updateQuality();
     expect(itemsToCheck).not.be.null.and.not.be.empty;
     expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([0,5,-5,-1]);
@@ -40,7 +40,7 @@ describe("Gilded Rose", () => {
       { name: "Aged Brie", sellIn: 0, quality: 50 },
     ];
     const itemsToShop = itemsToTest.map(item => new Item(item.name, item.sellIn, item.quality));
-    const gildedRose = new testShop(itemsToShop);
+    const gildedRose = new Shop(itemsToShop);
     const itemsToCheck = gildedRose.updateQuality();
     expect(itemsToCheck).not.be.null.and.not.be.empty;
     expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([-1, -1]);
@@ -54,12 +54,12 @@ describe("Gilded Rose", () => {
 
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 40 },
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 6, quality: 30 },
-      
+
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 11, quality: 30 },
       { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 49 },
     ]
     const itemsToShop = items.map(item => new Item(item.name, item.sellIn, item.quality));
-    const gildedRose = new testShop(itemsToShop);
+    const gildedRose = new Shop(itemsToShop);
     const qualityCheck = gildedRose.updateQuality();
     expect(qualityCheck).not.be.null.and.not.be.empty;
     expect(qualityCheck.map(item => item.sellIn)).to.deep.equal([-1, 14, 4, 5, 10, 4]);
@@ -67,7 +67,7 @@ describe("Gilded Rose", () => {
   });
 
   test("shop returns empty array when no items where put in the shop class", () => {
-    const gildedRose = new testShop();
+    const gildedRose = new Shop();
     const items = gildedRose.updateQuality();
     expect(items).to.be.empty;
   });
