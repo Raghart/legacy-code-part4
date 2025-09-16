@@ -27,18 +27,10 @@ export class testShop {
         return item;  
       }
       case("Backstage passes to a TAFKAL80ETC concert") : {
-        const sellIn = item.sellIn;
+        const step = item.sellIn <= 5 ? 3 : item.sellIn <= 10 ? 2 : 1;
+        if (item.sellIn <= 0) item.quality = 0;
+        if (item.sellIn > 0) item.quality = Math.min(item.quality + step, 50);
         -- item.sellIn;
-        if (sellIn > 0 && item.quality < 50) {
-          ++ item.quality;
-          if (sellIn > 0 && sellIn < 10 && sellIn > 5 && item.quality < 50) {
-            ++ item.quality
-          }
-          if (sellIn > 0 && sellIn <= 5 && item.quality < 50) {
-           ++ item.quality;
-           ++ item.quality;
-          }
-        };
         return item;
       }
       case("Sulfuras, Hand of Ragnaros"): return;
