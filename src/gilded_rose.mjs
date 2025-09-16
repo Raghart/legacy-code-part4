@@ -28,10 +28,7 @@ export class testShop {
       }
       default: {
         --item.sellIn;
-        if (item.quality > 0) {
-          --item.quality;
-          if (item.sellIn < 0) { --item.quality };
-        }
+        if (item.quality > 0) { item.quality = item.sellIn < 0 ? item.quality - 2 : --item.quality; }
         return item;
       }
     }
