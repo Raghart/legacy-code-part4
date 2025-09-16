@@ -26,10 +26,25 @@ export class testShop {
         item.quality = item.quality + 2 >= 50 ? item.quality : item.quality + 2;
         return item;  
       }
+      case("Backstage passes to a TAFKAL80ETC concert") : {
+        const sellIn = item.sellIn;
+        -- item.sellIn;
+        if (sellIn > 0 && item.quality < 50) {
+          ++ item.quality;
+          if (sellIn > 0 && sellIn < 10 && sellIn > 5 && item.quality < 50) {
+            ++ item.quality
+          }
+          if (sellIn > 0 && sellIn <= 5 && item.quality < 50) {
+           ++ item.quality;
+           ++ item.quality;
+          }
+        };
+        return item;
+      }
       case("Sulfuras, Hand of Ragnaros"): return;
       default: {
         --item.sellIn;
-        if (item.quality > 0) { item.quality = item.sellIn < 0 ? item.quality - 2 : --item.quality; }
+        if (item.quality > 0) { item.quality = item.sellIn < 0 ? item.quality - 2 : --item.quality; };
         return item;
       }
     }
