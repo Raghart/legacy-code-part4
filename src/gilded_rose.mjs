@@ -11,10 +11,24 @@ export class testShop {
     this.items = items;
   };
 
+  updateItem(item) {
+    switch(item.name) {
+      case("Aged Brie"): {
+        --item.sellIn;
+        item.quality = item.quality + 2 < 50 ? item.quality : item.quality + 2;
+        return item;  
+      }
+    }
+  }
+
   updateQuality() {
     for (let i=0; i < this.items.length; i++) {
-      this.items[i].sellIn = --this.items[i].sellIn;
-      if (this.items[i].quality < 50) { this.items[i].quality = this.items[i].quality + 2 }
+      switch(this.items[i].name) {
+        case("Aged Brie"): {
+          this.items[i].sellIn = --this.items[i].sellIn;
+          if (this.items[i].quality < 50) { this.items[i].quality = this.items[i].quality + 2 }
+        }
+      }
       
     }
     console.log(this.items)
