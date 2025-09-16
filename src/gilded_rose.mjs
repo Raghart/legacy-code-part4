@@ -6,6 +6,16 @@ export class Item {
   }
 }
 
+export class testShop {
+  constructor(items = []) {
+    this.items = items;
+  };
+
+  updateQuality() {
+    return this.items;
+  }
+}
+
 export class Shop {
   constructor(items = []) {
     this.items = items;

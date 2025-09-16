@@ -1,6 +1,6 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
-import { Item, Shop } from "../src/gilded_rose.mjs";
+import { Item, Shop, testShop } from "../src/gilded_rose.mjs";
 
 describe("Gilded Rose", () => {
   test("shop returns a list of items with expected results", () => {
@@ -63,7 +63,7 @@ describe("Gilded Rose", () => {
   });
 
   test("shop returns empty array when no items where put in the shop class", () => {
-    const gildedRose = new Shop();
+    const gildedRose = new testShop();
     const items = gildedRose.updateQuality();
     expect(items).to.be.empty;
   });
