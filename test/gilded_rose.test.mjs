@@ -27,7 +27,7 @@ describe("Gilded Rose", () => {
       { name: "Sulfuras, Hand of Ragnaros", sellIn: -1, quality: 2 },
     ];
     const itemsToShop = itemsToTest.map(item => new Item(item.name, item.sellIn, item.quality));
-    const gildedRose = new Shop(itemsToShop);
+    const gildedRose = new testShop(itemsToShop);
     const itemsToCheck = gildedRose.updateQuality();
     expect(itemsToCheck).not.be.null.and.not.be.empty;
     expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([0,5,-5,-1]);

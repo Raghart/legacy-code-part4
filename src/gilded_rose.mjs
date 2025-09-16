@@ -26,6 +26,7 @@ export class testShop {
         item.quality = item.quality + 2 >= 50 ? item.quality : item.quality + 2;
         return item;  
       }
+      case("Sulfuras, Hand of Ragnaros"): return;
       default: {
         --item.sellIn;
         if (item.quality > 0) { item.quality = item.sellIn < 0 ? item.quality - 2 : --item.quality; }
