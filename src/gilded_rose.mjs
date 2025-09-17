@@ -30,15 +30,18 @@ export class Shop {
         -- item.sellIn;
         return item;
       }
-      case("Sulfuras, Hand of Ragnaros"): return;
+      case("Sulfuras, Hand of Ragnaros"): {
+        item.quality = 80;
+        return item;
+      };
       case("Conjured"): {
-        --item.sellIn
-        item.quality = item.sellIn >= 0 ? item.quality - 2 : item.quality - 4;
+        --item.sellIn;
+        item.quality = Math.max(item.quality - (item.sellIn >= 0 ? 2 : 4), 0);
         return item;
       }
       default: {
         --item.sellIn;
-        if (item.quality > 0) { item.quality = item.sellIn < 0 ? item.quality - 2 : --item.quality; };
+        if (item.quality > 0) { item.quality = item.sellIn < 0 ? item.quality - 2 : item.quality - 1; };
         return item;
       }
     }

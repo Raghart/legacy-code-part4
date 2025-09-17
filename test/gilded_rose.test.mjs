@@ -31,7 +31,7 @@ describe("Gilded Rose", () => {
     const itemsToCheck = gildedRose.updateQuality();
     expect(itemsToCheck).not.be.null.and.not.be.empty;
     expect(itemsToCheck.map(item => item.sellIn)).to.deep.equal([0,5,-5,-1]);
-    expect(itemsToCheck.map(item => item.quality)).to.deep.equal([0, 10,-5,2]);
+    expect(itemsToCheck.map(item => item.quality)).to.deep.equal([80, 80, 80 ,80]);
   });
 
   test("shop return expected possible paths for Aged Brie", () => {
